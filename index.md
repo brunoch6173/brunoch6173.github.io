@@ -1,7 +1,3 @@
-# 你好，世界！
-
-这是我从零开始用 GitHub 搭建的官网。
-
 ---
 layout: default
 title: 首页
