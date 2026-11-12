@@ -225,10 +225,42 @@
 
     <script>
         function copyPageLink() {
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                const toast = document.getElementById('toast');
-                toast.classList.remove('opacity-0');
-                setTimeout(() => toast.classList.add('opacity-0'), 2000);
+<script>
+        function copyPageLink() {
+            // 自动去掉 Instagram 附带的一长串追踪参数，只复制干净的主页网址
+            const cleanUrl = window.location.origin + window.location.pathname;
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(cleanUrl).then(showToast).catch(() => fallbackCopy(cleanUrl));
+            } else {
+                fallbackCopy(cleanUrl);
+            }
+        }
+
+        // 专门针对 Instagram / 微信内置浏览器的传统复制兜底方案
+        function fallbackCopy(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                console.error('Copy failed', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('opacity-0');
+            setTimeout(() => toast.classList.add('opacity-0'), 2000);
+        }
+    </script>
             });
         }
     </script>
