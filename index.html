@@ -80,7 +80,7 @@
 
     <!-- 顶部极简分享按钮 -->
     <div class="w-full max-w-[480px] flex justify-end mb-3 animate-item" style="animation-delay: 0.05s;">
-        <button onclick="copyPageLink()" title="Copy link"
+        <button type="button" onclick="copyPageLink()" title="Copy link"
                 class="w-10 h-10 rounded-full bg-zinc-900/80 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white hover:border-white/25 transition-all active:scale-90">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
@@ -112,7 +112,7 @@
         <!-- 2. 社交平台与联系列表 -->
         <div class="w-full space-y-3.5">
 
-           <!-- Email（左侧发送邮件，右侧独立 Copy） -->
+            <!-- Email -->
             <div class="link-pill flex items-center justify-between w-full rounded-2xl px-5 py-4 group animate-item" style="animation-delay: 0.14s;">
                 <a href="mailto:brunocheng03@gmail.com"
                    class="flex items-center gap-4 flex-1 min-w-0 pr-3">
@@ -137,6 +137,7 @@
                     <span class="copy-label">Copy</span>
                 </button>
             </div>
+
             <!-- Instagram -->
             <a href="https://www.instagram.com/brunoch_6173/" target="_blank" rel="noopener noreferrer"
                class="link-pill flex items-center justify-between w-full rounded-2xl px-5 py-4 group animate-item" style="animation-delay: 0.18s;">
@@ -203,24 +204,50 @@
                 </svg>
             </a>
 
-            <!-- Media Downloader -->
-            <a href="https://drive.google.com/drive/folders/1pdMwsLEk77PrsDOLuZfYKUULzT-LvlX5?usp=drive_link" target="_blank" rel="noopener noreferrer"
-               class="link-pill flex items-center justify-between w-full rounded-2xl px-5 py-4 group animate-item" style="animation-delay: 0.34s;">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/[0.06] flex items-center justify-center text-zinc-300 group-hover:bg-white group-hover:text-black transition-colors">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            <!-- Apps 文件夹卡片 -->
+            <div class="w-full animate-item" style="animation-delay: 0.34s;">
+                <button type="button"
+                        onclick="toggleAppsFolder()"
+                        aria-expanded="false"
+                        aria-controls="apps-folder-panel"
+                        class="link-pill flex items-center justify-between w-full rounded-2xl px-5 py-4 group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/[0.06] flex items-center justify-center text-zinc-300 group-hover:bg-white group-hover:text-black transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/>
+                            </svg>
+                        </div>
+                        <div class="text-left">
+                            <span class="text-sm font-medium text-zinc-100 group-hover:text-white block">Apps</span>
+                            <span class="font-mono text-[11px] text-zinc-400">1 item</span>
+                        </div>
+                    </div>
+                    <svg id="apps-chevron" class="w-4 h-4 text-zinc-500 group-hover:text-white transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+
+                <!-- 文件夹内部内容 -->
+                <div id="apps-folder-panel" class="hidden mt-2.5 pl-3 pr-1 space-y-2.5">
+                    <a href="https://drive.google.com/drive/folders/1pdMwsLEk77PrsDOLuZfYKUULzT-LvlX5?usp=drive_link" target="_blank" rel="noopener noreferrer"
+                       class="link-pill flex items-center justify-between w-full rounded-2xl px-5 py-3.5 group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/[0.06] flex items-center justify-center text-zinc-300 group-hover:bg-white group-hover:text-black transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <span class="text-sm font-medium text-zinc-100 group-hover:text-white block">Media Downloader</span>
+                                <span class="font-mono text-[11px] text-zinc-400">win版开源无广告不限速</span>
+                            </div>
+                        </div>
+                        <svg class="w-4 h-4 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
                         </svg>
-                    </div>
-                    <div class="text-left">
-                        <span class="text-sm font-medium text-zinc-100 group-hover:text-white block">Media Downloader</span>
-                        <span class="font-mono text-[11px] text-zinc-400">win版开源无广告不限速</span>
-                    </div>
+                    </a>
                 </div>
-                <svg class="w-4 h-4 text-zinc-500 group-hover:text-white group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-                </svg>
-            </a>
+            </div>
 
         </div>
 
@@ -239,12 +266,75 @@
     </div>
 
     <script>
+        let toastTimer = null;
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.remove('opacity-0');
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.add('opacity-0'), 2000);
+        }
+
+        function copyTextSync(text) {
+            let copied = false;
+            const area = document.createElement('textarea');
+            area.value = text;
+            area.setAttribute('readonly', '');
+            area.style.position = 'fixed';
+            area.style.top = '0';
+            area.style.left = '-9999px';
+            document.body.appendChild(area);
+            area.focus();
+            area.select();
+            try {
+                copied = document.execCommand('copy');
+            } catch (e) {
+                copied = false;
+            }
+            document.body.removeChild(area);
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).catch(() => {});
+                return true;
+            }
+            return copied;
+        }
+
         function copyPageLink() {
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                const toast = document.getElementById('toast');
-                toast.classList.remove('opacity-0');
-                setTimeout(() => toast.classList.add('opacity-0'), 2000);
-            });
+            copyTextSync(window.location.href);
+            showToast('Link copied to clipboard');
+        }
+
+        function copyEmail(event, email, btn) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            copyTextSync(email);
+            const label = btn ? btn.querySelector('.copy-label') : null;
+            const original = label ? label.textContent : 'Copy';
+            if (label) label.textContent = 'Copied';
+            showToast('Email copied to clipboard');
+            setTimeout(() => {
+                if (label) label.textContent = original;
+            }, 1600);
+        }
+
+        function toggleAppsFolder() {
+            const panel = document.getElementById('apps-folder-panel');
+            const chevron = document.getElementById('apps-chevron');
+            const btn = chevron ? chevron.closest('button') : null;
+            if (!panel) return;
+
+            const isOpen = !panel.classList.contains('hidden');
+            panel.classList.toggle('hidden', isOpen);
+            if (chevron) {
+                chevron.classList.toggle('rotate-180', !isOpen);
+            }
+            if (btn) {
+                btn.setAttribute('aria-expanded', String(!isOpen));
+            }
         }
     </script>
 </body>
